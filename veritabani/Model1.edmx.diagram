@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c29f5896c94440eab62f981e5de3d764" Name="Diagram1">
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Beden" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Kumas" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Menu" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Musteri" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Renk" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Siparisler" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Urun" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Yonetici" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="giyimMagzasiDBModel.Yorum" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Urun_Beden" ManuallyRouted="false" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Urun_Kumas" ManuallyRouted="false" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Siparisler_Musteri1" ManuallyRouted="false" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Yorum_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Urun_Renk" ManuallyRouted="false" />
+        <AssociationConnector Association="giyimMagzasiDBModel.FK_Siparisler_Urun" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

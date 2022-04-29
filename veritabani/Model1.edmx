@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="giyimMagzasiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beden">
+          <Key>
+            <PropertyRef Name="urunBeden_id" />
+          </Key>
+          <Property Name="urunBeden_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunBeden" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Kumas">
+          <Key>
+            <PropertyRef Name="urunKumasi_id" />
+          </Key>
+          <Property Name="urunKumasi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunKumasi" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menuAdi" Type="nchar" MaxLength="30" />
+          <Property Name="url" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteri_id" />
+          </Key>
+          <Property Name="musteri_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriAdi" Type="nchar" MaxLength="20" />
+          <Property Name="musteriSifre" Type="nchar" MaxLength="20" />
+          <Property Name="musteriPosta" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Renk">
+          <Key>
+            <PropertyRef Name="renk_id" />
+          </Key>
+          <Property Name="renk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="renk" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="siparis_id" />
+          </Key>
+          <Property Name="siparis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_fk" Type="int" />
+          <Property Name="siparisTutarı" Type="int" />
+          <Property Name="urun_fk" Type="int" />
+          <Property Name="adres" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunAd" Type="nchar" MaxLength="10" />
+          <Property Name="urunKumasi_fk" Type="int" />
+          <Property Name="urunFiyat" Type="int" />
+          <Property Name="urunBeden_fk" Type="int" />
+          <Property Name="urunRenk_fk" Type="int" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="yonetici_id" />
+          </Key>
+          <Property Name="yonetici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yoneticiAdi" Type="nchar" MaxLength="20" />
+          <Property Name="yoneticiSifre" Type="nchar" MaxLength="20" />
+          <Property Name="yoneticiPosta" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yorumBaslik" Type="nchar" MaxLength="10" />
+          <Property Name="yorumIcerik" Type="nchar" MaxLength="100" />
+          <Property Name="musteri_fk" Type="int" />
+        </EntityType>
+        <Association Name="FK_Siparisler_Musteri1">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="musteri_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="urun_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Beden">
+          <End Role="Beden" Type="Self.Beden" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beden">
+              <PropertyRef Name="urunBeden_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunBeden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kumas">
+          <End Role="Kumas" Type="Self.Kumas" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kumas">
+              <PropertyRef Name="urunKumasi_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunKumasi_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Renk">
+          <End Role="Renk" Type="Self.Renk" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Renk">
+              <PropertyRef Name="renk_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunRenk_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="musteri_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="giyimMagzasiDBModelStoreContainer">
+          <EntitySet Name="Beden" EntityType="Self.Beden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kumas" EntityType="Self.Kumas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Renk" EntityType="Self.Renk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Siparisler_Musteri1" Association="Self.FK_Siparisler_Musteri1">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Urun" Association="Self.FK_Siparisler_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Beden" Association="Self.FK_Urun_Beden">
+            <End Role="Beden" EntitySet="Beden" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kumas" Association="Self.FK_Urun_Kumas">
+            <End Role="Kumas" EntitySet="Kumas" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Renk" Association="Self.FK_Urun_Renk">
+            <End Role="Renk" EntitySet="Renk" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Musteri" Association="Self.FK_Yorum_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="giyimMagzasiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beden">
+          <Key>
+            <PropertyRef Name="urunBeden_id" />
+          </Key>
+          <Property Name="urunBeden_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunBeden" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Beden" FromRole="Beden" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Kumas">
+          <Key>
+            <PropertyRef Name="urunKumasi_id" />
+          </Key>
+          <Property Name="urunKumasi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunKumasi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Kumas" FromRole="Kumas" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menuAdi" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteri_id" />
+          </Key>
+          <Property Name="musteri_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriAdi" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="musteriSifre" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="musteriPosta" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK_Siparisler_Musteri1" FromRole="Musteri" ToRole="Siparisler" />
+          <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Musteri" FromRole="Musteri" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Renk">
+          <Key>
+            <PropertyRef Name="renk_id" />
+          </Key>
+          <Property Name="renk_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="renk1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Renk" FromRole="Renk" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="siparis_id" />
+          </Key>
+          <Property Name="siparis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_fk" Type="Int32" />
+          <Property Name="siparisTutarı" Type="Int32" />
+          <Property Name="urun_fk" Type="Int32" />
+          <Property Name="adres" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Siparisler_Musteri1" FromRole="Siparisler" ToRole="Musteri" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Siparisler_Urun" FromRole="Siparisler" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunAd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="urunKumasi_fk" Type="Int32" />
+          <Property Name="urunFiyat" Type="Int32" />
+          <Property Name="urunBeden_fk" Type="Int32" />
+          <Property Name="urunRenk_fk" Type="Int32" />
+          <NavigationProperty Name="Beden" Relationship="Self.FK_Urun_Beden" FromRole="Urun" ToRole="Beden" />
+          <NavigationProperty Name="Kumas" Relationship="Self.FK_Urun_Kumas" FromRole="Urun" ToRole="Kumas" />
+          <NavigationProperty Name="Renk" Relationship="Self.FK_Urun_Renk" FromRole="Urun" ToRole="Renk" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK_Siparisler_Urun" FromRole="Urun" ToRole="Siparisler" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="yonetici_id" />
+          </Key>
+          <Property Name="yonetici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yoneticiAdi" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="yoneticiSifre" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="yoneticiPosta" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="yorum_id" />
+          </Key>
+          <Property Name="yorum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yorumBaslik" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="yorumIcerik" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="musteri_fk" Type="Int32" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Yorum_Musteri" FromRole="Yorum" ToRole="Musteri" />
+        </EntityType>
+        <Association Name="FK_Urun_Beden">
+          <End Role="Beden" Type="Self.Beden" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beden">
+              <PropertyRef Name="urunBeden_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunBeden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kumas">
+          <End Role="Kumas" Type="Self.Kumas" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kumas">
+              <PropertyRef Name="urunKumasi_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunKumasi_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Musteri1">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="musteri_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteri_id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="musteri_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Renk">
+          <End Role="Renk" Type="Self.Renk" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Renk">
+              <PropertyRef Name="renk_id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="urunRenk_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparisler_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="urun_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="giyimMagzasiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beden" EntityType="Self.Beden" />
+          <EntitySet Name="Kumas" EntityType="Self.Kumas" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="Renk" EntityType="Self.Renk" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+          <AssociationSet Name="FK_Urun_Beden" Association="Self.FK_Urun_Beden">
+            <End Role="Beden" EntitySet="Beden" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kumas" Association="Self.FK_Urun_Kumas">
+            <End Role="Kumas" EntitySet="Kumas" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Musteri1" Association="Self.FK_Siparisler_Musteri1">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Musteri" Association="Self.FK_Yorum_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Renk" Association="Self.FK_Urun_Renk">
+            <End Role="Renk" EntitySet="Renk" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparisler_Urun" Association="Self.FK_Siparisler_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="giyimMagzasiDBModelStoreContainer" CdmEntityContainer="giyimMagzasiDBEntities">
+          <EntitySetMapping Name="Beden">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Beden">
+              <MappingFragment StoreEntitySet="Beden">
+                <ScalarProperty Name="urunBeden_id" ColumnName="urunBeden_id" />
+                <ScalarProperty Name="urunBeden" ColumnName="urunBeden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kumas">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Kumas">
+              <MappingFragment StoreEntitySet="Kumas">
+                <ScalarProperty Name="urunKumasi_id" ColumnName="urunKumasi_id" />
+                <ScalarProperty Name="urunKumasi" ColumnName="urunKumasi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="menuAdi" ColumnName="menuAdi" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+                <ScalarProperty Name="musteriSifre" ColumnName="musteriSifre" />
+                <ScalarProperty Name="musteriPosta" ColumnName="musteriPosta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Renk">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Renk">
+              <MappingFragment StoreEntitySet="Renk">
+                <ScalarProperty Name="renk_id" ColumnName="renk_id" />
+                <ScalarProperty Name="renk1" ColumnName="renk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparisler">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Siparisler">
+              <MappingFragment StoreEntitySet="Siparisler">
+                <ScalarProperty Name="siparis_id" ColumnName="siparis_id" />
+                <ScalarProperty Name="musteri_fk" ColumnName="musteri_fk" />
+                <ScalarProperty Name="siparisTutarı" ColumnName="siparisTutarı" />
+                <ScalarProperty Name="urun_fk" ColumnName="urun_fk" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urun">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Urun">
+              <MappingFragment StoreEntitySet="Urun">
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+                <ScalarProperty Name="urunKumasi_fk" ColumnName="urunKumasi_fk" />
+                <ScalarProperty Name="urunFiyat" ColumnName="urunFiyat" />
+                <ScalarProperty Name="urunBeden_fk" ColumnName="urunBeden_fk" />
+                <ScalarProperty Name="urunRenk_fk" ColumnName="urunRenk_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yonetici">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Yonetici">
+              <MappingFragment StoreEntitySet="Yonetici">
+                <ScalarProperty Name="yonetici_id" ColumnName="yonetici_id" />
+                <ScalarProperty Name="yoneticiAdi" ColumnName="yoneticiAdi" />
+                <ScalarProperty Name="yoneticiSifre" ColumnName="yoneticiSifre" />
+                <ScalarProperty Name="yoneticiPosta" ColumnName="yoneticiPosta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorum">
+            <EntityTypeMapping TypeName="giyimMagzasiDBModel.Yorum">
+              <MappingFragment StoreEntitySet="Yorum">
+                <ScalarProperty Name="yorum_id" ColumnName="yorum_id" />
+                <ScalarProperty Name="yorumBaslik" ColumnName="yorumBaslik" />
+                <ScalarProperty Name="yorumIcerik" ColumnName="yorumIcerik" />
+                <ScalarProperty Name="musteri_fk" ColumnName="musteri_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
