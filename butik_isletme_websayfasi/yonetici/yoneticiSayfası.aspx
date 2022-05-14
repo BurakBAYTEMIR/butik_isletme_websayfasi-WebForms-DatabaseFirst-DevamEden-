@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="urunEkleme.aspx.cs" Inherits="butik_isletme_websayfasi.yonetici.urunEkleme" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="yoneticiSayfası.aspx.cs" Inherits="butik_isletme_websayfasi.yonetici.yoneticiSayfası" %>
 
 <!DOCTYPE html>
 

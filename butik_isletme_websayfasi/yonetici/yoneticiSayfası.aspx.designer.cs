@@ -10,7 +10,7 @@
 
 namespace butik_isletme_websayfasi.yonetici
 {
-    public partial class urunSilme
+    public partial class yoneticiSayfası
     {
 
         /// <summary>

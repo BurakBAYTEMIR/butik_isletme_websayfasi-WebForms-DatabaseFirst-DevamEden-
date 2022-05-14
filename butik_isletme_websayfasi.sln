@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "siniflarim", "siniflarim\si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "veritabani", "veritabani\veritabani.csproj", "{4E58E2EE-5EEC-4B2B-9C87-FD35DED40F76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{CEB06E7F-D141-48B4-A20F-4567FC500458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4E58E2EE-5EEC-4B2B-9C87-FD35DED40F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E58E2EE-5EEC-4B2B-9C87-FD35DED40F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E58E2EE-5EEC-4B2B-9C87-FD35DED40F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB06E7F-D141-48B4-A20F-4567FC500458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB06E7F-D141-48B4-A20F-4567FC500458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB06E7F-D141-48B4-A20F-4567FC500458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB06E7F-D141-48B4-A20F-4567FC500458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

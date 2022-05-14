@@ -29,23 +29,13 @@
       <p class="login-box-msg">Lütfen Giriş Yapınız</p>
 
       <form action="/Temp/index3.html" method="post">
-        <div class="input-group mb-3">
-          
-<asp:TextBox ID="txt_mail" CssClass="form-control" runat="server">Mail</asp:TextBox>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
+        <div class="input-group mb-3">         
+<asp:TextBox ID="txt_mail" CssClass="form-control" runat="server" Width="563px">Mail</asp:TextBox>        
         </div>
         <div class="input-group mb-3">
 
             <asp:TextBox ID="txt_sifre" CssClass="form-control" runat="server">Şifre</asp:TextBox>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+          
         </div>
         <div class="row">
           <div class="col-8">

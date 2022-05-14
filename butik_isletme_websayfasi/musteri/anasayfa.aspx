@@ -159,7 +159,7 @@
     <!-- Brand Logo -->
     <a href="/Temp/index3.html" class="brand-link">
       <img src="/Temp/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Bayte Butik</span>
     </a>
 
     <!-- Sidebar -->
@@ -197,19 +197,21 @@
                       <ul>
                   </HeaderTemplate>
                   <ItemTemplate>
-                      <li> <a href="#"><%#Eval("menuAdi") %></a></li>
+                      <li> 
+                          <a href="#"><%#Eval("menuAdi") %></a>
+                      </li>
                   </ItemTemplate>
                   <AlternatingItemTemplate>
                       </ul>
                   </AlternatingItemTemplate>
               </asp:Repeater>
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+            
+              
+              
                
                 
-            </a>
-            <li>
+            
+            
           </li>
         </ul>
       </nav>
