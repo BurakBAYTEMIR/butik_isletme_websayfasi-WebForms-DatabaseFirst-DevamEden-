@@ -33,10 +33,10 @@
   </tr>
   <tr>
     <td class="auto-style3">
-        <asp:TextBox ID="TextBox1" runat="server" Width="150px" Height="20px"></asp:TextBox>
+        <asp:TextBox ID="urunAd" runat="server" Width="150px" Height="20px"></asp:TextBox>
       </td>
     <td class="auto-style4">
-        <asp:TextBox ID="TextBox2" runat="server" Width="150px" Height="20px"></asp:TextBox>
+        <asp:TextBox ID="urunFiyat" runat="server" Width="150px" Height="20px"></asp:TextBox>
       </td>
     <td class="auto-style1">
         <asp:DropDownList ID="DropDownList1" runat="server" Height="20px" Width="150px" DataSourceID="SqlDataSource1" DataTextField="urunKumasi" DataValueField="urunKumasi">
